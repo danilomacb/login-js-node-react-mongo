@@ -17,6 +17,7 @@ nav {
 nav ul li a {
   color: white;
   margin-right: 15px;
+  text-decoration: none;
 }
 
 form {
