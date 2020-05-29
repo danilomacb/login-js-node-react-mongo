@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
 
@@ -10,7 +11,11 @@ router.get("/", (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    await User.create(req.body);
+    const { email, password } = req.body;
+
+    const hash = bcrypt.hashSync(password, process.env.SALT);
+
+    await User.create({ email, password: hash });
 
     return res.status(200).send("User registered");
   } catch (err) {
