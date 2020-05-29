@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const hash = bcrypt.hashSync(password, process.env.SALT);
+    const hash = bcrypt.hashSync(password, parseInt(process.env.SALT));
 
     await User.create({ email, password: hash });
 
