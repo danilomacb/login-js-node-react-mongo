@@ -1,14 +1,63 @@
+:root {
+  --gray-dark: rgb(50, 50, 50);
+  --gray-light: rgb(150, 150, 150);
+  --primary: rgb(0, 200, 220);
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
 nav {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--gray-dark);
   padding: 10px;
 }
 
 nav ul li a {
   color: white;
   margin-right: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form button {
+  background-color: var(--primary);
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+form button:hover {
+  cursor: pointer;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  margin: 100px auto 100px auto;
+  padding: 20px;
+  border: 1px solid var(--gray-light);
+  border-radius: 5px;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin: 15px 0 15px 0;
+}
+
+.field input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--gray-light);
+}
+
+.field label {
+  padding: 5px;
 }
