@@ -1,9 +1,11 @@
 import React from "react";
 
-function Register() {
+import Form from "../containers/Form";
+
+function Register({ match }) {
   const url = "http://localhost:3001/";
 
-  let formElement;
+  const formElement = React.createRef();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -14,11 +16,14 @@ function Register() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: formElement[0].value, password: formElement[1].value }),
+        body: JSON.stringify({
+          email: formElement.current[0].value,
+          password: formElement.current[1].value,
+        }),
       });
 
-      formElement[0].value = "";
-      formElement[1].value = "";
+      formElement.current[0].value = "";
+      formElement.current[1].value = "";
 
       response = await response.text();
 
@@ -29,26 +34,7 @@ function Register() {
     }
   };
 
-  return (
-    <div className="container">
-      <form
-        onSubmit={submit}
-        ref={(element) => {
-          formElement = element;
-        }}
-      >
-        <div className="field">
-          <label>Email: </label>
-          <input type="email" />
-        </div>
-        <div className="field">
-          <label>Password: </label>
-          <input type="password" />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
+  return <Form ref={formElement} submit={submit} />;
 }
 
 export default Register;
