@@ -2,7 +2,7 @@ import React from "react";
 
 import Form from "../containers/Form";
 
-function Register({ match }) {
+function Register() {
   const url = "http://localhost:3001/";
 
   const formElement = React.createRef();
