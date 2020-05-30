@@ -22,6 +22,9 @@ function Login() {
         }),
       });
 
+      formElement.current[0].value = "";
+      formElement.current[1].value = "";
+
       response = await response.text();
 
       return alert(response);
