@@ -5,11 +5,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const user = require("./routes/user");
+const auth = require("./routes/auth");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/user", user);
+app.use("/auth", auth);
 
 mongoose.connect(
   process.env.MONGO_URL,

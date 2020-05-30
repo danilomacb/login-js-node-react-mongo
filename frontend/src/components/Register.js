@@ -27,10 +27,10 @@ function Register() {
 
       response = await response.text();
 
-      alert(response);
+      return alert(response);
     } catch (err) {
       alert("Error on register");
-      console.error("Error on register: ", err);
+      return console.error("Error on register: ", err);
     }
   };
 
