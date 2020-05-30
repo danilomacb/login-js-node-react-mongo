@@ -15,7 +15,12 @@ app.use("/auth", auth);
 
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  },
   (err) => {
     if (err) return console.error("Error on mongoose connect: ", err);
   }
