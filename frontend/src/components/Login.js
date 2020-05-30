@@ -11,7 +11,7 @@ function Login() {
     event.preventDefault();
 
     try {
-      let response = await fetch(url + "auth", {
+      const response = await fetch(url + "auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,9 +25,11 @@ function Login() {
       formElement.current[0].value = "";
       formElement.current[1].value = "";
 
-      response = await response.text();
+      const { message, token } = await response.json();
 
-      return alert(response);
+      localStorage.setItem("token", token);
+
+      return alert(message);
     } catch (err) {
       alert("Error on login");
       return console.error("Error on login: ", err);

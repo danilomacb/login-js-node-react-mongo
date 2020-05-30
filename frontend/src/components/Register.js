@@ -11,7 +11,7 @@ function Register() {
     event.preventDefault();
 
     try {
-      let response = await fetch(url + "user", {
+      const response = await fetch(url + "user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,9 +25,9 @@ function Register() {
       formElement.current[0].value = "";
       formElement.current[1].value = "";
 
-      response = await response.text();
+      const { message } = await response.json();
 
-      return alert(response);
+      return alert(message);
     } catch (err) {
       alert("Error on register");
       return console.error("Error on register: ", err);

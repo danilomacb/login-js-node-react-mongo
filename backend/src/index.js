@@ -6,12 +6,14 @@ const cors = require("cors");
 
 const user = require("./routes/user");
 const auth = require("./routes/auth");
+const protected = require("./routes/protected");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/user", user);
 app.use("/auth", auth);
+app.use("/protected", protected);
 
 mongoose.connect(
   process.env.MONGO_URL,

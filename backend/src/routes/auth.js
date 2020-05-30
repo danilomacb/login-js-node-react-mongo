@@ -12,20 +12,20 @@ router.post("/", async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
+    if (!user) return res.status(500).send({ message: "User not found" });
+
     const match = bcrypt.compareSync(password, user.password);
 
     if (match) {
-      const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-      console.log(token);
-
-      return res.status(200).send("Login successful");
+      return res.status(200).send({ message: "Login successful", token });
     }
 
-    return res.status(500).send("Login fail");
+    return res.status(500).send({ message: "Invalid password" });
   } catch (err) {
     console.error("Error on login: ", err);
-    return res.status(500).send("Error on login");
+    return res.status(500).send({ message: "Error on login" });
   }
 });
 
