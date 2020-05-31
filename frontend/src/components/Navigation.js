@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-function Navigation() {
+function Navigation({ email }) {
+  console.log(email);
   return (
     <nav>
       <ul>
@@ -14,4 +16,8 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+function mapStateToProps(state) {
+  return { email: state.email };
+}
+
+export default connect(mapStateToProps)(Navigation);

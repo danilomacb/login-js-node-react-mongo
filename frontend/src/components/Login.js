@@ -1,8 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import { setEmail } from "../state/actions";
 import Form from "../containers/Form";
 
-function Login() {
+function Login({ dispatch }) {
   const url = "http://localhost:3001/";
 
   const formElement = React.createRef();
@@ -25,9 +27,11 @@ function Login() {
       formElement.current[0].value = "";
       formElement.current[1].value = "";
 
-      const { message, token } = await response.json();
+      const { message, token, email } = await response.json();
 
       localStorage.setItem("token", token);
+
+      dispatch(setEmail(email));
 
       return alert(message);
     } catch (err) {
@@ -39,4 +43,4 @@ function Login() {
   return <Form ref={formElement} submit={submit} />;
 }
 
-export default Login;
+export default connect()(Login);
