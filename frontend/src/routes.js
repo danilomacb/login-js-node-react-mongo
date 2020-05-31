@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { isAuthenticated } from "./auth";
+import isAuthenticated from "./auth";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Protected from "./components/Protected";
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (
@@ -28,7 +29,7 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/app" component={() => <h1>Você está logado</h1>} />
+        <PrivateRoute path="/protected" component={Protected} />
       </Switch>
     </BrowserRouter>
   );
