@@ -7,7 +7,7 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.get("/", (req, res) => {
-  res.send({ ok: true, user: req.userId });
+  res.send({ email: req.userEmail });
 });
 
 module.exports = router;
