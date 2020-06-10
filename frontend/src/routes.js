@@ -8,11 +8,14 @@ import Register from "./components/Register";
 import Protected from "./components/Protected";
 
 function PrivateRoute({ component: Component, ...rest }) {
+  const authenticated = isAuthenticated();
+  console.log(authenticated);
+
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated() ? (
+        authenticated ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />

@@ -13,7 +13,7 @@ function Login({ dispatch }) {
     event.preventDefault();
 
     try {
-      const response = await fetch(url + "auth", {
+      const response = await fetch(url + "login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

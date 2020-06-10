@@ -5,14 +5,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const user = require("./routes/user");
-const auth = require("./routes/auth");
+const login = require("./routes/login");
 const protected = require("./routes/protected");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/user", user);
-app.use("/auth", auth);
+app.use("/login", login);
 app.use("/protected", protected);
 
 mongoose.connect(
