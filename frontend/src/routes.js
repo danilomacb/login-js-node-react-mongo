@@ -5,7 +5,12 @@ import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Protected from "./components/Protected";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateClass from "./components/PrivateClass";
+import PrivateFunction from "./components/PrivateFunction";
+
+function PrivateRoute({ component: Component, ...rest }) {
+  return <Route {...rest} render={(props) => <Component {...props} />} />;
+}
 
 function Routes() {
   return (
@@ -14,7 +19,9 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/protected" component={Protected} />
+        <PrivateClass path="/class" component={Protected} />
+        <PrivateFunction path="/function" component={Protected} />
+        <PrivateRoute path="/private" component={Protected} />
       </Switch>
     </BrowserRouter>
   );

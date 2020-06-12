@@ -8,7 +8,9 @@ function Navigation() {
         <li>
           <Link to="/">Login</Link>
           <Link to="/register">Register</Link>
-          <Link to="/protected">Protected</Link>
+          <Link to="/class">Class</Link>
+          <Link to="/function">Function</Link>
+          <Link to="/private">Private</Link>
         </li>
       </ul>
     </nav>

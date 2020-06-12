@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-class PrivateRoute extends Component {
+class PrivateClass extends Component {
   _isMounted = false;
 
   constructor(props) {
@@ -52,4 +52,4 @@ class PrivateRoute extends Component {
   }
 }
 
-export default PrivateRoute;
+export default PrivateClass;
