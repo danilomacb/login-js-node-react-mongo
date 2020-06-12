@@ -2,28 +2,52 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 class PrivateRoute extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
-    this.state = { authenticated: false };
+
+    this.state = { id: undefined };
   }
+
+  componentWillMount() {
+    this._isMounted = true;
+    this.isAuthenticated();
+  }
+
+  // componentDidMount() {
+  //   this._isMounted = true;
+  //   this.isAuthenticated();
+  // }
 
   isAuthenticated() {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      this.setState({ authenticated: true });
-    }
+    if (!token) return;
+
+    const url = "http://localhost:3001/";
+
+    fetch(url + "protected", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }).then((response) => {
+      response.json().then((data) => {
+        if (this._isMounted) {
+          this.setState({ id: data.id });
+        }
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
+    console.log(this.state.id);
     return (
-      <>
-        {console.log(this.authenticated)}
-        <Route
-          {...this.rest}
-          render={(props) => (this.authenticated ? <Redirect to="/" /> : <div>foi</div>)}
-        />
-      </>
+      <Route render={(props) => (this.state.id ? <props.component /> : <Redirect to="/" />)} />
     );
   }
 }
